@@ -4,6 +4,7 @@ const config = require("./config");
 // const connectDB = require('./config/db');
 const configureMiddleware = require("./middleware");
 const configureRoutes = require("./routes");
+const http = require('http');
 const socketio = require("socket.io");
 const gameSocket = require("./socket/index");
 
@@ -20,27 +21,60 @@ const app = express();
 // Config Express-Middleware
 configureMiddleware(app);
 
-// Set-up Routes
-configureRoutes(app);
+// Create HTTP server
+const server = http.createServer(app);
 
-// Start server and listen for connections
-const server = app.listen(config.PORT, () => {
-    console.log(
-        `Server is running in ${config.NODE_ENV} mode and is listening on port ${config.PORT}...`
-    );
+// Initialize Socket.IO with more detailed configuration
+const io = new socketio.Server(server, {
+  path: '/socket.io',
+  serveClient: false,
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false,
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  },
+  transports: ['polling', 'websocket']
 });
 
-//  Handle real-time poker game logic with socket.io
-const io = socketio(server);
+// Debug socket connections
+io.engine.on("connection_error", (err) => {
+  console.log("Connection error:", err);
+});
 
-io.on("connect", (socket) => gameSocket.init(socket, io));
+io.on('connection', (socket) => {
+  console.log('New client connected:', socket.id);
 
-// Error handling - close server
-process.on("unhandledRejection", (err) => {
-    // db.disconnect();
+  socket.on('disconnect', () => {
+    console.log('Client disconnected:', socket.id);
+  });
 
-    console.error(`Error: ${err.message}`);
-    server.close(() => {
-        process.exit(1);
-    });
+  socket.on('error', (error) => {
+    console.error('Socket error:', error);
+  });
+});
+
+// Configure routes
+configureRoutes(app);
+
+// Initialize socket handlers
+gameSocket(io);
+
+// Start server
+const PORT = config.PORT || 7777;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Socket.IO server is ready`);
+});
+
+// Error handling
+server.on('error', (error) => {
+  console.error('Server error:', error);
+});
+
+process.on('unhandledRejection', (error) => {
+  console.error('Unhandled Rejection:', error);
 });

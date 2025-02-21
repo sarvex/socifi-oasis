@@ -1,5 +1,46 @@
+# Dependencies
 **/node_modules
+# Keep pnpm-lock.yaml
+!pnpm-lock.yaml
+
+# Environment files
 local.env
 production.env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# SonarQube
+.scannerwork/
+.sonar/
+.sonarlint/
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build outputs
+/build/
+/dist/
+/client/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache directories
+.cache/
+.npm/
+.eslintcache
+
+# Temporary files
 loca/~$Loca_Keys_Strings_DE_EN.xlsx
 ~$WIFI-Projekt Präsentation.pptx

@@ -44,13 +44,70 @@ const WebSocketProvider = ({ children }) => {
   }
 
   function connect() {
-    const socket = io(config.socketURI, {
-      transports: ['websocket'],
-      upgrade: false,
-    })
-    registerCallbacks(socket)
-    window.socket = socket
-    return socket
+    try {
+      console.log('Attempting to connect to:', config.socketURI);
+
+      const socket = io(config.socketURI, {
+        path: '/socket.io',
+        transports: ['polling', 'websocket'],
+        upgrade: true,
+        rememberUpgrade: true,
+        reconnection: true,
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        timeout: 20000,
+        autoConnect: true,
+        forceNew: true,
+        withCredentials: true
+      });
+
+      socket.on('connect', () => {
+        console.log('Socket connected successfully:', socket.id);
+        setSocket(socket);
+        setSocketId(socket.id);
+      });
+
+      socket.on('connect_error', (error) => {
+        console.error('Socket connection error:', error);
+        // Try to reconnect with polling if websocket fails
+        if (socket.io.opts.transports.includes('websocket')) {
+          console.log('Falling back to polling transport');
+          socket.io.opts.transports = ['polling'];
+        }
+      });
+
+      socket.on('disconnect', (reason) => {
+        console.log('Socket disconnected:', reason);
+        if (reason === 'io server disconnect') {
+          // Reconnect if server initiated disconnect
+          socket.connect();
+        }
+      });
+
+      socket.on('reconnect', (attemptNumber) => {
+        console.log('Socket reconnected after', attemptNumber, 'attempts');
+      });
+
+      socket.on('reconnect_attempt', () => {
+        console.log('Attempting to reconnect...');
+      });
+
+      socket.on('reconnect_error', (error) => {
+        console.error('Reconnection error:', error);
+      });
+
+      socket.on('error', (error) => {
+        console.error('Socket error:', error);
+      });
+
+      registerCallbacks(socket);
+      window.socket = socket;
+      return socket;
+    } catch (error) {
+      console.error('Socket connection failed:', error);
+      return null;
+    }
   }
 
   function registerCallbacks(socket) {
@@ -65,7 +122,7 @@ const WebSocketProvider = ({ children }) => {
       setTables(tables)
       setPlayers(players)
     })
-    
+
     socket.on(SC_PLAYERS_UPDATED, (players) => {
       console.log(SC_PLAYERS_UPDATED, players)
       setPlayers(players)

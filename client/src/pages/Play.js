@@ -51,24 +51,43 @@ const Play = () => {
     call,
     raise,
   } = useContext(gameContext)
-   
 
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [bet, setBet] = useState(0)
 
-
   useEffect(() => {
-    console.log(socket, walletAddress)
-    if(!socket){
-      navigate("/")
+    console.log('Play Mount:', {
+      socketStatus: socket?.connected,
+      walletAddress,
+      currentTable
+    })
+
+    if (!socket || !socket.connected) {
+      setError('Socket connection lost')
+      navigate('/')
+      return
     }
 
-    // !walletAddress && navigate("/")
-    socket && walletAddress && joinTable(1)
-
-    if(socket){
-      return () => leaveTable()
+    if (!walletAddress) {
+      setError('No wallet address')
+      navigate('/')
+      return
     }
-    // eslint-disable-next-line
+
+    try {
+      joinTable(1)
+      setLoading(false)
+    } catch (err) {
+      console.error('Error joining table:', err)
+      setError('Failed to join table')
+    }
+
+    return () => {
+      if (socket?.connected) {
+        leaveTable()
+      }
+    }
   }, [socket, walletAddress])
 
   useEffect(() => {
@@ -82,6 +101,14 @@ const Play = () => {
 
   useEffect(() => {
   }, [currentTable, seatId])
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
+  if (loading) {
+    return <div>Loading game...</div>
+  }
 
   return (
     <>

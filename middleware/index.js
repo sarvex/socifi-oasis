@@ -35,8 +35,12 @@ const configureMiddleware = (app) => {
   // Prevent http param pollution
   app.use(hpp());
 
-  // Enable CORS
-  app.use(cors());
+  // Enable CORS with specific options
+  app.use(cors({
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    methods: ['GET', 'POST'],
+    credentials: true
+  }));
 
   // Custom logging middleware
   app.use(logger);
