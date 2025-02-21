@@ -21,52 +21,52 @@ importers:
         specifier: ^0.20.0
         version: 0.20.0
       bootstrap:
-        specifier: ^5.1.3
+        specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
       contentful:
-        specifier: ^7.14.6
+        specifier: ^7.15.2
         version: 7.15.2
       ethers:
-        specifier: ^5.6.4
+        specifier: ^5.7.2
         version: 5.7.2
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^16.13.1
+        specifier: ^16.14.0
         version: 16.14.0
       react-bootstrap:
-        specifier: ^2.2.3
+        specifier: ^2.10.9
         version: 2.10.9(@types/react@19.0.10)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       react-dom:
-        specifier: ^16.13.1
+        specifier: ^16.14.0
         version: 16.14.0(react@16.14.0)
       react-remarkable:
         specifier: ^1.1.3
         version: 1.1.3
       react-router-dom:
-        specifier: ^6.3.0
+        specifier: ^6.29.0
         version: 6.29.0(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       react-scripts:
-        specifier: ^3.4.3
+        specifier: ^3.4.4
         version: 3.4.4(eslint@6.8.0)(react@16.14.0)(sass@1.85.0)(typescript@3.9.10)
       sass:
-        specifier: ^1.50.0
+        specifier: ^1.85.0
         version: 1.85.0
       socket.io:
-        specifier: ^2.3.0
+        specifier: ^2.5.1
         version: 2.5.1
       socket.io-client:
-        specifier: ^4.7.4
+        specifier: ^4.8.1
         version: 4.8.1
       styled-components:
-        specifier: ^5.1.1
+        specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.9.0)(react-dom@16.14.0(react@16.14.0))(react-is@16.13.1)(react@16.14.0)
       sweetalert2:
-        specifier: ^11.4.8
+        specifier: ^11.17.2
         version: 11.17.2
       zustand:
-        specifier: ^4.0.0-rc.0
+        specifier: ^4.5.6
         version: 4.5.6(@types/react@19.0.10)(react@16.14.0)
 
 packages:
@@ -8046,7 +8046,9 @@ snapshots:
       source-map: 0.6.1
       string-length: 2.0.0
     transitivePeerDependencies:
+      - bufferutil
       - supports-color
+      - utf-8-validate
 
   '@jest/source-map@24.9.0':
     dependencies:
