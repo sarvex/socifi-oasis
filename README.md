@@ -109,5 +109,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - [@sarvex](https://twitter.com/sarvex)
-Project Link: [https://github.com/sarvex/socify-oasis](https://github.com/sarvex/socifi-oasis)
+[@sarvex](https://twitter.com/sarvex) [https://github.com/sarvex/socify-oasis](https://github.com/sarvex/socifi-oasis)
