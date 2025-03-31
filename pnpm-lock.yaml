@@ -30,8 +30,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       express-rate-limit:
-        specifier: 5.1.3
-        version: 5.1.3
+        specifier: 5.5.1
+        version: 5.5.1
       express-validator:
         specifier: 6.6.1
         version: 6.6.1
@@ -606,8 +606,8 @@ packages:
     resolution: {integrity: sha512-PZBs5nwhD6ek9ZuP+W2xmpvcrHwXZxD5GdieX2dsjPbAbH4azOkrHbycBud2QRU+YQF1CT+pki/lZGedHgo/dQ==}
     engines: {node: '>=10'}
 
-  express-rate-limit@5.1.3:
-    resolution: {integrity: sha512-TINcxve5510pXj4n9/1AMupkj3iWxl3JuZaWhCdYDlZeoCPqweGZrxbrlqTCFb1CT5wli7s8e2SH/Qz2c9GorA==}
+  express-rate-limit@5.5.1:
+    resolution: {integrity: sha512-MTjE2eIbHv5DyfuFz4zLYWxpqVhEhkTiwFGuB74Q9CSou2WHO52nlE5y3Zlg6SIsiYUIPj6ifFxnkPz6O3sIUg==}
 
   express-validator@6.6.1:
     resolution: {integrity: sha512-+MrZKJ3eGYXkNF9p9Zf7MS7NkPJFg9MDYATU5c80Cf4F62JdLBIjWxy6481tRC0y1NnC9cgOw8FuN364bWaGhA==}
@@ -2078,7 +2078,7 @@ snapshots:
 
   express-mongo-sanitize@2.2.0: {}
 
-  express-rate-limit@5.1.3: {}
+  express-rate-limit@5.5.1: {}
 
   express-validator@6.6.1:
     dependencies:
