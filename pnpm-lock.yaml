@@ -36,8 +36,8 @@ importers:
         specifier: 6.6.1
         version: 6.6.1
       helmet:
-        specifier: 4.1.0
-        version: 4.1.0
+        specifier: 4.6.0
+        version: 4.6.0
       hpp:
         specifier: 0.2.3
         version: 0.2.3
@@ -698,8 +698,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  helmet@4.1.0:
-    resolution: {integrity: sha512-KWy75fYN8hOG2Rhl8e5B3WhOzb0by1boQum85TiddIE9iu6gV+TXbUjVC17wfej0o/ZUpqB9kxM0NFCZRMzf+Q==}
+  helmet@4.6.0:
+    resolution: {integrity: sha512-HVqALKZlR95ROkrnesdhbbZJFi/rIVSoNq6f3jA/9u6MIbTsPh3xZwihjeI5+DO/2sOV6HMHooXcEOuwskHpTg==}
     engines: {node: '>=10.0.0'}
 
   hpp@0.2.3:
@@ -2200,7 +2200,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  helmet@4.1.0: {}
+  helmet@4.6.0: {}
 
   hpp@0.2.3:
     dependencies:
