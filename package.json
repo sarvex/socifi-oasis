@@ -19,7 +19,7 @@
         "mongoose": "6.13.6",
         "pokersolver": "2.1.4",
         "socket.io": "4.8.1",
-        "underscore": "1.13.7",
+        "underscore": "1.13.8",
         "xss-clean": "0.1.4"
     },
     "devDependencies": {
